@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prysm iO™ — Truly Intelligent Wellness | Nu Skin Thailand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Syne:wght@400;700;800&family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#07070a;--off-black:#0d0d11;--surface:#131318;--surface2:#1a1a20;
+  --border:rgba(255,255,255,0.07);--border-hi:rgba(255,255,255,0.14);
+  --text:#edeae4;--muted:rgba(237,234,228,0.48);--dim:rgba(237,234,228,0.22);
+  --pa:#a6d5ff;--pb:#bbaaf8;--pc:#f5a9d1;--pd:#6de5b3;--pe:#fce08c;--gold:#c89a3c;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--text);font-family:'Syne','Sarabun',sans-serif;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.022;pointer-events:none;z-index:9999;}
+.orb{position:fixed;width:800px;height:800px;border-radius:50%;
+  background:conic-gradient(from 200deg,#a6d5ff14,#bbaaf814,#f5a9d114,#6de5b314,#fce08c14,#a6d5ff14);
+  filter:blur(100px);pointer-events:none;z-index:0;top:-300px;right:-300px;
+  transition:transform 1.4s cubic-bezier(.16,1,.3,1);}
+/* Lang */
+.lang-wrap{position:fixed;top:1.25rem;left:50%;transform:translateX(-50%);z-index:300;display:flex;border:.5px solid var(--border-hi);overflow:hidden;}
+.lang-btn{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:.36rem .88rem;cursor:pointer;border:none;background:transparent;color:var(--muted);transition:all .2s;}
+.lang-btn.active{background:rgba(166,213,255,.12);color:var(--pa);}
+/* Nav */
+nav{position:fixed;top:0;width:100%;z-index:200;padding:1.3rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:.5px solid transparent;transition:border-color .4s,backdrop-filter .4s,background .4s;}
+nav.scrolled{border-color:var(--border);backdrop-filter:blur(24px);background:rgba(7,7,10,.78);}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:.14em;text-transform:uppercase;background:linear-gradient(90deg,var(--pa),var(--pb),var(--pc));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.logo small{font-weight:400;font-size:.65em;opacity:.55;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--muted);font-family:'DM Mono',monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{font-family:'DM Mono',monospace;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;padding:.44rem 1.2rem;border:.5px solid rgba(166,213,255,.35);color:var(--pa);background:rgba(166,213,255,.07);cursor:pointer;text-decoration:none;transition:background .2s;}
+.nav-cta:hover{background:rgba(166,213,255,.14);}
+/* Hero */
+.hero{position:relative;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 2.5rem;gap:2rem;z-index:1;}
+.hero-left{padding-top:5rem;}
+.eyebrow{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--pb);margin-bottom:1.25rem;display:flex;align-items:center;gap:.7rem;}
+.eyebrow::before{content:'';display:block;width:20px;height:.5px;background:var(--pb);}
+.hero-title{font-family:'Cormorant Garamond','Sarabun',serif;font-weight:300;font-size:clamp(2.8rem,4.5vw,5rem);line-height:1.0;margin-bottom:1.5rem;}
+.hero-title em{font-style:italic;background:linear-gradient(135deg,var(--pa) 0%,var(--pb) 40%,var(--pc) 80%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-family:'Sarabun',serif;font-size:1rem;font-weight:300;color:var(--muted);line-height:1.8;max-width:430px;margin-bottom:2.5rem;}
+.hero-actions{display:flex;align-items:center;gap:1.8rem;flex-wrap:wrap;}
+.btn-primary{font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding:.82rem 2rem;background:linear-gradient(135deg,var(--pa),var(--pb));color:#07070a;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity .2s,transform .2s;}
+.btn-primary:hover{opacity:.86;transform:translateY(-1px);}
+.btn-ghost{font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:.4rem;border:none;background:none;cursor:pointer;transition:color .2s;}
+.btn-ghost:hover{color:var(--text);}
+.btn-ghost::after{content:'→';}
+/* Hero device */
+.hero-right{display:flex;justify-content:center;align-items:center;padding-top:5rem;position:relative;}
+.device-wrap{position:relative;width:300px;height:300px;}
+.ring{position:absolute;border-radius:50%;border:.5px solid;top:50%;left:50%;}
+.ring1{width:280px;height:280px;border-color:rgba(166,213,255,.1);animation:spin1 22s linear infinite;}
+.ring2{width:360px;height:360px;border-color:rgba(187,170,248,.07);animation:spin2 35s linear infinite;}
+.ring3{width:440px;height:440px;border-color:rgba(245,169,209,.05);animation:spin1 50s linear infinite;}
+@keyframes spin1{0%{transform:translate(-50%,-50%) rotate(0deg);}100%{transform:translate(-50%,-50%) rotate(360deg);}}
+@keyframes spin2{0%{transform:translate(-50%,-50%) rotate(0deg);}100%{transform:translate(-50%,-50%) rotate(-360deg);}}
+.device-img{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:210px;height:210px;object-fit:contain;filter:drop-shadow(0 0 60px rgba(166,213,255,.2));animation:float 6s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translate(-50%,-50%) translateY(0);}50%{transform:translate(-50%,-50%) translateY(-10px);}}
+.score-badge{position:absolute;bottom:-1rem;right:-1.5rem;background:var(--surface2);border:.5px solid var(--border-hi);padding:.7rem 1.1rem;}
+.score-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;background:linear-gradient(135deg,var(--pd),var(--pa));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+.score-label{font-family:'DM Mono',monospace;font-size:.54rem;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-top:.2rem;}
+/* Marquee */
+.marquee-wrap{overflow:hidden;border-top:.5px solid var(--border);border-bottom:.5px solid var(--border);padding:1.1rem 0;background:var(--surface);position:relative;z-index:1;}
+.marquee-track{display:flex;gap:2.5rem;animation:marquee 26s linear infinite;white-space:nowrap;}
+.marquee-item{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);display:flex;align-items:center;gap:.9rem;flex-shrink:0;}
+.marquee-item::after{content:'◆';font-size:.36rem;color:var(--pb);}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+/* Stats */
+.stats-bar{position:relative;z-index:1;border-top:.5px solid var(--border);border-bottom:.5px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr);background:var(--off-black);}
+.stat-item{padding:2rem 1.8rem;border-right:.5px solid var(--border);}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;line-height:1;margin-bottom:.3rem;background:linear-gradient(135deg,var(--text) 60%,var(--muted));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.stat-lbl{font-family:'Sarabun',sans-serif;font-size:.78rem;color:var(--dim);line-height:1.4;}
+/* Sections */
+section{position:relative;z-index:1;}
+.sec-label{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:.7rem;}
+.sec-title{font-family:'Cormorant Garamond','Sarabun',serif;font-weight:300;font-size:clamp(1.9rem,3vw,3rem);line-height:1.1;}
+.sec-title em{font-style:italic;color:var(--muted);}
+/* Problem */
+.problem{padding:5.5rem 2.5rem;background:var(--off-black);border-top:.5px solid var(--border);}
+.problem-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.problem-img{width:100%;border:.5px solid var(--border);display:block;}
+.problem-text{font-family:'Sarabun',sans-serif;font-size:.95rem;color:var(--muted);line-height:1.85;font-weight:300;margin-bottom:1.1rem;}
+/* How */
+.how{padding:5.5rem 2.5rem;background:var(--black);border-top:.5px solid var(--border);}
+.how-header{max-width:500px;margin-bottom:3rem;}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:.5px solid var(--border);}
+.how-item{background:var(--off-black);padding:2.2rem 1.8rem;position:relative;overflow:hidden;transition:background .3s;}
+.how-item:hover{background:var(--surface);}
+.how-num{font-family:'Cormorant Garamond',serif;font-size:3.8rem;font-weight:300;line-height:1;color:rgba(255,255,255,.04);position:absolute;top:.8rem;right:1rem;}
+.how-icon-wrap{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;}
+.how-step-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.02em;margin-bottom:.5rem;}
+.how-step-text{font-family:'Sarabun',sans-serif;font-size:.87rem;color:var(--muted);line-height:1.7;font-weight:300;}
+/* Score */
+.score-section{padding:5.5rem 2.5rem;background:var(--off-black);border-top:.5px solid var(--border);}
+.score-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.score-zones{margin-top:1.8rem;display:flex;flex-direction:column;gap:.45rem;}
+.zone{display:grid;grid-template-columns:3.2rem 1fr;gap:.7rem;align-items:start;padding:.65rem .85rem;border-left:3px solid;}
+.zone-range{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.05em;margin-top:.1rem;}
+.zone-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.72rem;margin-bottom:.12rem;}
+.zone-desc{font-family:'Sarabun',sans-serif;font-size:.76rem;color:var(--muted);font-weight:300;line-height:1.42;}
+/* Hospital */
+.hospital{padding:5.5rem 2.5rem;background:var(--black);border-top:.5px solid var(--border);}
+.hospital-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.hospital-img{width:100%;display:block;border:.5px solid var(--border);}
+.vs-card{background:var(--surface2);border:.5px solid var(--border-hi);padding:1.8rem;margin-top:1.8rem;}
+.vs-row{display:flex;justify-content:space-between;align-items:center;padding:.68rem 0;border-bottom:.5px solid var(--border);}
+.vs-row:last-child{border-bottom:none;}
+.vs-label{font-family:'Sarabun',sans-serif;font-size:.86rem;color:var(--muted);font-weight:300;}
+.vs-val{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.05em;}
+.vs-val.bad{color:#f87171;}.vs-val.good{color:var(--pd);}
+/* Packages */
+.packages{padding:5.5rem 2.5rem;background:var(--off-black);border-top:.5px solid var(--border);}
+.packages-header{text-align:center;margin-bottom:3rem;}
+.pack-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:.5px solid var(--border);max-width:860px;margin:0 auto;}
+.pack{background:var(--off-black);padding:2.2rem 2rem;transition:background .3s;}
+.pack:hover{background:var(--surface);}
+.pack.featured{background:var(--surface);border:1.5px solid rgba(166,213,255,.22);margin:-1px;z-index:2;}
+.pack-badge{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;padding:.26rem .72rem;background:rgba(166,213,255,.1);color:var(--pa);display:inline-block;margin-bottom:1rem;}
+.pack-name{font-family:'Syne',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;}
+.pack-img{width:100%;max-height:180px;object-fit:contain;margin:.8rem 0;}
+.pack-price-th{font-family:'Cormorant Garamond','Sarabun',serif;font-weight:300;font-size:2.2rem;line-height:1;margin-bottom:.1rem;}
+.pack-price-orig{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--dim);text-decoration:line-through;margin-bottom:.2rem;}
+.pack-save{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--pd);letter-spacing:.07em;margin-bottom:1.1rem;}
+.pack-divider{height:.5px;background:var(--border);margin:1rem 0;}
+.pack-features{list-style:none;margin-bottom:1.8rem;}
+.pack-features li{font-family:'Sarabun',sans-serif;font-size:.86rem;color:var(--muted);padding:.38rem 0;display:flex;gap:.6rem;align-items:flex-start;font-weight:300;line-height:1.4;}
+.pack-features li::before{content:'—';color:var(--dim);font-family:'DM Mono',monospace;font-size:.68rem;margin-top:.1rem;flex-shrink:0;}
+.pack-features li.yes::before{content:'✓';color:var(--pd);}
+.pack-btn{width:100%;padding:.75rem;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:.5px solid var(--border-hi);background:transparent;color:var(--text);transition:all .2s;}
+.pack-btn:hover{background:rgba(255,255,255,.05);}
+.pack.featured .pack-btn{background:linear-gradient(135deg,var(--pa),var(--pb));color:#07070a;border:none;}
+.pack.featured .pack-btn:hover{opacity:.88;}
+.pack-pv{font-family:'DM Mono',monospace;font-size:.56rem;color:var(--dim);text-align:center;margin-top:.55rem;letter-spacing:.07em;}
+/* 7-day */
+.challenge{padding:5.5rem 2.5rem;background:var(--black);border-top:.5px solid var(--border);}
+.challenge-header{max-width:540px;margin-bottom:3rem;}
+.days-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.65rem;}
+.day-card{background:var(--surface);border:.5px solid var(--border);overflow:hidden;transition:transform .25s,border-color .25s;cursor:pointer;}
+.day-card:hover{transform:translateY(-4px);border-color:var(--border-hi);}
+.day-card img{width:100%;aspect-ratio:1;object-fit:cover;display:block;}
+.day-label{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.45rem .5rem;text-align:center;}
+/* Business */
+.business{padding:5.5rem 2.5rem;background:var(--off-black);border-top:.5px solid var(--border);}
+.business-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.business-img{width:100%;display:block;border:.5px solid var(--border);}
+.biz-steps{margin-top:1.8rem;display:flex;flex-direction:column;gap:1px;background:var(--border);}
+.biz-step{background:var(--off-black);padding:1.3rem 1.5rem;display:flex;gap:1rem;align-items:flex-start;transition:background .2s;}
+.biz-step:hover{background:var(--surface);}
+.biz-num{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:var(--border-hi);line-height:1;flex-shrink:0;width:1.9rem;text-align:center;}
+.biz-step-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;margin-bottom:.28rem;}
+.biz-step-text{font-family:'Sarabun',sans-serif;font-size:.84rem;color:var(--muted);line-height:1.6;font-weight:300;}
+/* CTA */
+.cta-section{padding:6.5rem 2.5rem;background:var(--off-black);border-top:.5px solid var(--border);text-align:center;position:relative;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 50% 50%,rgba(166,213,255,.05) 0%,transparent 70%);pointer-events:none;}
+.cta-title{font-family:'Cormorant Garamond','Sarabun',serif;font-weight:300;font-size:clamp(2rem,3.6vw,3.8rem);line-height:1.1;max-width:640px;margin:0 auto 1.1rem;position:relative;z-index:1;}
+.cta-title em{font-style:italic;background:linear-gradient(135deg,var(--pa),var(--pb),var(--pc));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.cta-sub{font-family:'Sarabun',sans-serif;font-size:.96rem;color:var(--muted);margin-bottom:2.2rem;font-weight:300;position:relative;z-index:1;}
+.email-form{display:flex;max-width:420px;margin:0 auto;position:relative;z-index:1;}
+.email-form input{flex:1;padding:.82rem 1.1rem;background:var(--surface2);border:.5px solid var(--border-hi);border-right:none;color:var(--text);font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:.05em;outline:none;}
+.email-form input::placeholder{color:var(--dim);}
+.email-form input:focus{border-color:rgba(166,213,255,.35);}
+.email-form button{padding:.82rem 1.4rem;background:linear-gradient(135deg,var(--pa),var(--pb));color:#07070a;border:none;font-family:'DM Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:opacity .2s;}
+.email-form button:hover{opacity:.88;}
+.form-note{font-family:'DM Mono',monospace;font-size:.54rem;color:var(--dim);margin-top:.7rem;letter-spacing:.06em;position:relative;z-index:1;}
+/* Prism line */
+.prism-line{height:1px;background:linear-gradient(90deg,transparent,var(--pa),var(--pb),var(--pc),var(--pd),transparent);opacity:.35;}
+/* Footer */
+footer{padding:2.2rem 2.5rem;border-top:.5px solid var(--border);background:var(--black);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.2rem;}
+.footer-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;background:linear-gradient(90deg,var(--pa),var(--pb));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.footer-links{display:flex;gap:1.6rem;list-style:none;flex-wrap:wrap;}
+.footer-links a{text-decoration:none;font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);transition:color .2s;}
+.footer-links a:hover{color:var(--muted);}
+.footer-copy{font-family:'DM Mono',monospace;font-size:.54rem;color:var(--dim);letter-spacing:.06em;}
+/* Fade */
+.fu{opacity:0;transform:translateY(20px);transition:opacity .85s cubic-bezier(.16,1,.3,.95),transform .85s cubic-bezier(.16,1,.3,.95);}
+.fu.vis{opacity:1;transform:translateY(0);}
+/* Lang */
+.th{display:block;}.en{display:none;}
+body.lang-en .th{display:none;}body.lang-en .en{display:block;}
+.th-inline{display:inline;}.en-inline{display:none;}
+body.lang-en .th-inline{display:none;}body.lang-en .en-inline{display:inline;}
+</style>
+</head>
+<body>
+<div class="orb" id="orb"></div>
+
+<!-- Lang -->
+<div class="lang-wrap">
+  <button class="lang-btn active" id="btn-th" onclick="setLang('th')">ไทย</button>
+  <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+</div>
+
+<!-- Nav -->
+<nav id="nav">
+  <div class="logo">Prysm <small>iO™</small></div>
+  <ul class="nav-links">
+    <li><a href="#how"><span class="th-inline">วิธีใช้งาน</span><span class="en-inline">How It Works</span></a></li>
+    <li><a href="#score"><span class="th-inline">คะแนน Prysm</span><span class="en-inline">Prysm Score</span></a></li>
+    <li><a href="#packages"><span class="th-inline">แพ็กเกจ</span><span class="en-inline">Packages</span></a></li>
+    <li><a href="#business"><span class="th-inline">ธุรกิจ</span><span class="en-inline">Business</span></a></li>
+  </ul>
+  <a href="#packages" class="nav-cta"><span class="th-inline">สั่งซื้อเลย</span><span class="en-inline">Order Now</span></a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow fu">Nu Skin Thailand · Truly Intelligent Wellness</div>
+    <h1 class="hero-title fu" style="transition-delay:.08s">
+      <span class="th">รู้ทันสุขภาพ<br>ด้วย<em>วิทยาศาสตร์</em><br>ภายใน 15 วินาที</span>
+      <span class="en">Know Your Health<br>with <em>Science</em><br>in 15 Seconds</span>
+    </h1>
+    <p class="hero-sub fu" style="transition-delay:.16s">
+      <span class="th">Prysm iO™ เครื่องสแกนระดับสารต้านอนุมูลอิสระ (แคโรทีนอยด์) ที่ผิวหนัง แบบไม่รุกล้ำร่างกาย ด้วยเทคโนโลยี Spectral Rai™ และ AI จาก Nu Skin — รับผลทันที ไม่ต้องเจาะเลือด</span>
+      <span class="en">Prysm iO™ is a non-invasive antioxidant scanner (carotenoids) powered by Nu Skin's patent-pending Spectral Rai™ technology and AI — instant results, no blood draw required.</span>
+    </p>
+    <div class="hero-actions fu" style="transition-delay:.24s">
+      <a href="#packages" class="btn-primary"><span class="th-inline">ดูแพ็กเกจ</span><span class="en-inline">See Packages</span></a>
+      <button class="btn-ghost" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})"><span class="th-inline">เรียนรู้เพิ่มเติม</span><span class="en-inline">Learn More</span></button>
+    </div>
+  </div>
+  <div class="hero-right fu" style="transition-delay:.12s">
+    <div class="device-wrap">
+      <div class="ring ring1"></div><div class="ring ring2"></div><div class="ring ring3"></div>
+      <img class="device-img" src="images/PrysmIO_Graphic_Info.jpg" alt="Prysm iO Device">
+      <div class="score-badge">
+        <div class="score-num">820</div>
+        <div class="score-label"><span class="th-inline">คะแนน Prysm</span><span class="en-inline">Prysm Score</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">ไม่ต้องเจาะเลือด · No Blood Test</span>
+    <span class="marquee-item">ผลใน 15 วินาที · 15-Second Results</span>
+    <span class="marquee-item">วิจัยกว่า 20 ปี · 20+ Years Research</span>
+    <span class="marquee-item">21 ล้านการสแกน · 21M+ Scans Database</span>
+    <span class="marquee-item">AI-Powered · ขับเคลื่อนด้วย AI</span>
+    <span class="marquee-item">Spectral Rai™ Technology</span>
+    <span class="marquee-item">Powered by Nu Skin</span>
+    <span class="marquee-item">รับประกัน 2 ปี · 2-Year Warranty</span>
+    <span class="marquee-item">ไม่ต้องเจาะเลือด · No Blood Test</span>
+    <span class="marquee-item">ผลใน 15 วินาที · 15-Second Results</span>
+    <span class="marquee-item">วิจัยกว่า 20 ปี · 20+ Years Research</span>
+    <span class="marquee-item">21 ล้านการสแกน · 21M+ Scans Database</span>
+    <span class="marquee-item">AI-Powered · ขับเคลื่อนด้วย AI</span>
+    <span class="marquee-item">Spectral Rai™ Technology</span>
+    <span class="marquee-item">Powered by Nu Skin</span>
+    <span class="marquee-item">รับประกัน 2 ปี · 2-Year Warranty</span>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stats-bar">
+  <div class="stat-item fu"><div class="stat-num">15″</div><div class="stat-lbl"><span class="th">สแกนและรับผลทันที</span><span class="en">Instant scan result</span></div></div>
+  <div class="stat-item fu" style="transition-delay:.08s"><div class="stat-num">20+</div><div class="stat-lbl"><span class="th">ปีแห่งงานวิจัยแคโรทีนอยด์</span><span class="en">Years of carotenoid research</span></div></div>
+  <div class="stat-item fu" style="transition-delay:.16s"><div class="stat-num">21M+</div><div class="stat-lbl"><span class="th">การสแกนในฐานข้อมูล</span><span class="en">Antioxidant scans in database</span></div></div>
+  <div class="stat-item fu" style="transition-delay:.24s"><div class="stat-num">~50</div><div class="stat-lbl"><span class="th">ประเทศทั่วโลกที่ใช้งาน</span><span class="en">Countries worldwide</span></div></div>
+</div>
+
+<!-- ═══ WHY ═══ -->
+<section class="problem" id="why">
+  <div class="problem-inner">
+    <div class="fu"><img class="problem-img" src="images/All_Day_Prysm_iO_Ads.png" alt="Prysm iO All Day"></div>
+    <div class="fu" style="transition-delay:.12s">
+      <div class="sec-label"><span class="th">ทำไมต้อง Prysm iO</span><span class="en">Why Prysm iO</span></div>
+      <h2 class="sec-title" style="margin-bottom:1.4rem">
+        <span class="th">คุณรู้หรือไม่ว่า<br>อาหารเสริมที่ทาน<em>ได้ผลจริงหรือเปล่า?</em></span>
+        <span class="en">Do you know if your<br>supplements <em>actually work?</em></span>
+      </h2>
+      <p class="problem-text"><span class="th">คนส่วนใหญ่ใช้เงินนับล้านไปกับอาหารเสริม โดยไม่มีทางรู้ว่าร่างกายดูดซึมสารอาหารได้จริงหรือไม่ โลกสมัยใหม่ทำให้เกิดความเครียดจากออกซิเดชัน ผ่านมลพิษ ความเครียด การอดนอน และอาหารแปรรูป</span><span class="en">Most people spend fortunes on supplements without any way to know if their body is actually absorbing those nutrients. The modern world causes oxidative stress through pollution, mental stress, poor sleep, and processed food.</span></p>
+      <p class="problem-text"><span class="th">Prysm iO™ เปลี่ยนการดูแลสุขภาพจากการเดาสุ่ม ให้กลายเป็นข้อมูลที่วัดได้จริง ด้วยการวัดระดับแคโรทีนอยด์ที่ผิวหนัง ซึ่งเป็นสารต้านอนุมูลอิสระที่บ่งบอกสถานะโภชนาการและสุขภาพโดยรวมของคุณ</span><span class="en">Prysm iO™ transforms health care from guesswork into measurable data — by scanning carotenoid levels in your skin, the antioxidants that reflect your nutritional status and overall health.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="how" id="how">
+  <div class="how-header">
+    <div class="sec-label fu"><span class="th">วิธีการทำงาน</span><span class="en">How It Works</span></div>
+    <h2 class="sec-title fu" style="transition-delay:.08s">
+      <span class="th">ง่าย รวดเร็ว <em>แม่นยำ</em></span>
+      <span class="en">Simple. Fast. <em>Precise.</em></span>
+    </h2>
+  </div>
+  <div class="how-grid">
+    <div class="how-item fu">
+      <div class="how-num">01</div>
+      <div class="how-icon-wrap" style="background:rgba(166,213,255,.1)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="#a6d5ff" stroke-width="1"/><path d="M8 5v3l1.5 1.5" stroke="#a6d5ff" stroke-width="1" stroke-linecap="round"/></svg></div>
+      <div class="how-step-title"><span class="th">เปิดเครื่อง</span><span class="en">Power On</span></div>
+      <div class="how-step-text"><span class="th">กดปุ่มที่เครื่อง Prysm iO ไฟ LED จะติดรอบอุปกรณ์ วางบนพื้นเรียบ</span><span class="en">Press the power button. LED lights illuminate. Place on a flat surface.</span></div>
+    </div>
+    <div class="how-item fu" style="transition-delay:.08s">
+      <div class="how-num">02</div>
+      <div class="how-icon-wrap" style="background:rgba(187,170,248,.1)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7 3v5.5l2.5 2.5" stroke="#bbaaf8" stroke-width="1" stroke-linecap="round"/><circle cx="8" cy="8" r="5.5" stroke="#bbaaf8" stroke-width=".5"/></svg></div>
+      <div class="how-step-title"><span class="th">วางนิ้วชี้บนเลนส์</span><span class="en">Place Finger on Lens</span></div>
+      <div class="how-step-text"><span class="th">วางนิ้วชี้ตรงกลางเลนส์สแกน ให้นิ้วสะอาดและแห้ง การสแกนเริ่มอัตโนมัติ</span><span class="en">Place your index finger over the scanning lens. Keep it clean and dry. Scan starts automatically.</span></div>
+    </div>
+    <div class="how-item fu" style="transition-delay:.16s">
+      <div class="how-num">03</div>
+      <div class="how-icon-wrap" style="background:rgba(245,169,209,.1)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="#f5a9d1" stroke-width=".5"/><path d="M5 8h6M8 5v6" stroke="#f5a9d1" stroke-width="1" stroke-linecap="round"/></svg></div>
+      <div class="how-step-title"><span class="th">รอ 15 วินาที</span><span class="en">Wait 15 Seconds</span></div>
+      <div class="how-step-text"><span class="th">Spectral Rai™ วัดค่า 700,000+ ครั้ง ระบบ AI ประมวลผลและแสดง Prysm Score</span><span class="en">Spectral Rai™ captures 700,000+ measurements. AI processes and displays your Prysm Score.</span></div>
+    </div>
+    <div class="how-item fu" style="transition-delay:.24s">
+      <div class="how-num">04</div>
+      <div class="how-icon-wrap" style="background:rgba(109,229,179,.1)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8.5l2.5 2.5 5-5" stroke="#6de5b3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="8" r="5.5" stroke="#6de5b3" stroke-width=".5"/></svg></div>
+      <div class="how-step-title"><span class="th">ดูผลใน App</span><span class="en">View Results in App</span></div>
+      <div class="how-step-text"><span class="th">ดาวน์โหลดแอป Nu Skin Prysm iO ดูคะแนน ติดตามความคืบหน้า และรับคำแนะนำ AI เฉพาะตัว</span><span class="en">Download the Nu Skin Prysm iO app. View your score, track progress, and receive personalized AI insights.</span></div>
+    </div>
+  </div>
+  <div style="margin-top:2.5rem" class="fu">
+    <img src="images/easy_slide.png" alt="Easy to Use" style="width:100%;border:.5px solid var(--border);display:block;">
+  </div>
+</section>
+
+<!-- ═══ PRYSM SCORE ═══ -->
+<section class="score-section" id="score">
+  <div class="score-inner">
+    <div class="fu">
+      <div class="sec-label"><span class="th">คะแนน Prysm Score</span><span class="en">The Prysm Score</span></div>
+      <h2 class="sec-title" style="margin-bottom:1.2rem">
+        <span class="th">รู้ว่าคุณอยู่ใน<br>โซนไหน <em>ทันที</em></span>
+        <span class="en">Know your zone<br><em>instantly</em></span>
+      </h2>
+      <p style="font-family:'Sarabun',sans-serif;font-size:.92rem;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:1.6rem">
+        <span class="th">คะแนน Prysm (100–1000) บ่งบอกระดับแคโรทีนอยด์ในผิวหนัง ยิ่งคะแนนสูง ยิ่งมีสารต้านอนุมูลอิสระมากและสุขภาพดีกว่า ไฟ LED บนอุปกรณ์จะเปลี่ยนสีตามโซนของคุณ</span>
+        <span class="en">The Prysm Score (100–1000) indicates your skin carotenoid levels. The higher your score, the more antioxidant protection and better health. The device LED changes color to match your zone.</span>
+      </p>
+      <div class="score-zones">
+        <div class="zone" style="border-color:#ef4444;background:rgba(239,68,68,.06)">
+          <div><div class="zone-range" style="color:#ef4444">100–290</div></div>
+          <div><div class="zone-name" style="color:#ef4444"><span class="th">มีความเสี่ยง</span><span class="en">At Risk</span></div><div class="zone-desc"><span class="th">อ่อนเพลีย ปวดหัว สมองไม่แล่น นอนไม่หลับ การอักเสบสูง โรคลุกลาม</span><span class="en">Fatigue, headaches, brain fog, poor sleep, high inflammation, disease progression</span></div></div>
+        </div>
+        <div class="zone" style="border-color:#f97316;background:rgba(249,115,22,.06)">
+          <div><div class="zone-range" style="color:#f97316">300–390</div></div>
+          <div><div class="zone-name" style="color:#f97316"><span class="th">ปานกลาง</span><span class="en">Moderate</span></div><div class="zone-desc"><span class="th">พลังงานต่ำ อักเสบบ้าง ปัญหาด้านอาหาร นอนไม่ดี ไม่สมบูรณ์แบบ</span><span class="en">Low energy, some inflammation, diet issues, trouble sleeping, not at your best</span></div></div>
+        </div>
+        <div class="zone" style="border-color:#22c55e;background:rgba(34,197,94,.06)">
+          <div><div class="zone-range" style="color:#22c55e">400–540</div></div>
+          <div><div class="zone-name" style="color:#22c55e"><span class="th">ดีขึ้น! สู้ต่อไป</span><span class="en">Keep Going!</span></div><div class="zone-desc"><span class="th">พลังงานเพิ่มขึ้น การอักเสบลด โภชนาการดีขึ้น การนอนหลับดีขึ้น มีความก้าวหน้า</span><span class="en">Increased energy, reduced inflammation, better nutrition & sleep, positive progress</span></div></div>
+        </div>
+        <div class="zone" style="border-color:#06b6d4;background:rgba(6,182,212,.06)">
+          <div><div class="zone-range" style="color:#06b6d4">550–740</div></div>
+          <div><div class="zone-name" style="color:#06b6d4"><span class="th">ยอดเยี่ยม</span><span class="en">Great — Optimal Protection</span></div><div class="zone-desc"><span class="th">พลังงานดีเยี่ยม การอักเสบต่ำ อาหารสมดุล นอนหลับฟื้นฟู สุขภาพดี</span><span class="en">Optimal energy, low inflammation, balanced diet, restorative sleep, good health</span></div></div>
+        </div>
+        <div class="zone" style="border-color:#a855f7;background:rgba(168,85,247,.06)">
+          <div><div class="zone-range" style="color:#a855f7">750–1000</div></div>
+          <div><div class="zone-name" style="color:#a855f7"><span class="th">อุดมคติ — ป้องกันดีที่สุด</span><span class="en">Ideal — Preventing Active Damage</span></div><div class="zone-desc"><span class="th">พลังงานเหลือเฟือ การอักเสบต่ำมาก อาหารยอดเยี่ยม นอนหลับฟื้นตัวสมบูรณ์ รู้สึกดีที่สุดในชีวิต</span><span class="en">Abundant energy, very low inflammation, excellent diet, rejuvenating sleep, feeling your absolute best</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="fu" style="transition-delay:.12s">
+      <img src="images/Prysm_Score_meaning.png" alt="Prysm Score Zones" style="width:100%;border:.5px solid var(--border);display:block;">
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOSPITAL COMPARE ═══ -->
+<section class="hospital" id="compare">
+  <div class="hospital-inner">
+    <div class="fu">
+      <div class="sec-label"><span class="th">เปรียบเทียบราคา</span><span class="en">Price Comparison</span></div>
+      <h2 class="sec-title" style="margin-bottom:1rem">
+        <span class="th">ตรวจที่โรงพยาบาล<br>เริ่มต้น <em>2,500 บาท</em><br>ต่อครั้ง</span>
+        <span class="en">Hospital testing<br>starts at <em>฿2,500</em><br>per visit</span>
+      </h2>
+      <p style="font-family:'Sarabun',sans-serif;font-size:.9rem;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:1.2rem">
+        <span class="th">การตรวจวัดระดับสารต้านอนุมูลอิสระที่โรงพยาบาลมีค่าใช้จ่ายสูงมาก ต้องเจาะเลือดและรอผลหลายชั่วโมงถึงหลายวัน Prysm iO™ ให้ผลทันทีในไม่กี่วินาที สแกนได้ไม่จำกัดจำนวนครั้ง</span>
+        <span class="en">Hospital antioxidant testing is very expensive, requires a blood draw, and takes hours or days for results. Prysm iO™ gives instant results in seconds — scan as many times as you want.</span>
+      </p>
+      <div class="vs-card">
+        <div class="vs-row"><span class="vs-label"><span class="th">วิธีการ</span><span class="en">Method</span></span><span class="vs-val bad"><span class="th">เจาะเลือด</span><span class="en">Blood Draw</span></span></div>
+        <div class="vs-row"><span class="vs-label"><span class="th">ราคาต่ำสุด (เซนต์พอล หัวหิน)</span><span class="en">Lowest Price (St. Paul Hua Hin)</span></span><span class="vs-val bad">฿2,500</span></div>
+        <div class="vs-row"><span class="vs-label"><span class="th">ราคาสูงสุด (พญาไท นวมินทร์)</span><span class="en">Highest Price (Phyathai Navamin)</span></span><span class="vs-val bad">฿7,000</span></div>
+        <div class="vs-row"><span class="vs-label"><span class="th">เวลารอผล</span><span class="en">Wait for Results</span></span><span class="vs-val bad"><span class="th">ชั่วโมง–วัน</span><span class="en">Hours to Days</span></span></div>
+        <div class="vs-row"><span class="vs-label"><span class="th">Prysm iO™ — วิธีการ</span><span class="en">Prysm iO™ — Method</span></span><span class="vs-val good"><span class="th">ไม่เจาะเลือด ใช้เพียงนิ้วมือ</span><span class="en">No needle · Fingertip scan</span></span></div>
+        <div class="vs-row"><span class="vs-label"><span class="th">Prysm iO™ — เวลา</span><span class="en">Prysm iO™ — Time</span></span><span class="vs-val good">15 <span class="th-inline">วินาที</span><span class="en-inline">seconds</span></span></div>
+        <div class="vs-row"><span class="vs-label"><span class="th">Prysm iO™ — จำนวนครั้ง</span><span class="en">Prysm iO™ — Scans</span></span><span class="vs-val good"><span class="th">ไม่จำกัด ทุกวัน</span><span class="en">Unlimited, Every Day</span></span></div>
+      </div>
+    </div>
+    <div class="fu" style="transition-delay:.12s">
+      <img class="hospital-img" src="images/hospital_price.jpg" alt="ตารางเปรียบเทียบราคาโรงพยาบาล">
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PACKAGES ═══ -->
+<section class="packages" id="packages">
+  <div class="packages-header">
+    <div class="sec-label fu"><span class="th">แพ็กเกจราคาพิเศษ</span><span class="en">Special Packages</span></div>
+    <h2 class="sec-title fu" style="transition-delay:.08s"><span class="th">เลือกแพ็กเกจ<em>ที่เหมาะกับคุณ</em></span><span class="en">Choose your<em>perfect package</em></span></h2>
+    <p style="font-family:'Sarabun',sans-serif;font-size:.88rem;color:var(--muted);margin-top:.9rem;font-weight:300" class="fu"><span class="th">เริ่มจำหน่าย 3 เม.ย. 2569 · สงวนสิทธิ์เฉพาะ Brand Affiliate รหัสสมาชิกไทย · รับประกันเครื่อง 2 ปี</span><span class="en">Available from April 3, 2026 · Thai Brand Affiliate members only · 2-Year device warranty</span></p>
+  </div>
+  <div class="pack-grid">
+    <div class="pack fu">
+      <div class="pack-name">Starter Kit</div>
+      <img class="pack-img" src="images/Prysm_IO_Starter_Pack.png" alt="Starter Kit">
+      <div class="pack-price-th">฿15,900 <small style="font-size:.45em;opacity:.55"><span class="th-inline">ราคาสมาชิก</span><span class="en-inline">member price</span></small></div>
+      <div class="pack-price-orig">฿22,730 <span style="opacity:.6;font-size:.9em">(<span class="th-inline">ราคาขายปลีก</span><span class="en-inline">retail</span>)</span></div>
+      <div class="pack-save"><span class="th-inline">ประหยัด ฿850 · 250 PV</span><span class="en-inline">Save ฿850 · 250 PV</span></div>
+      <div class="pack-divider"></div>
+      <ul class="pack-features">
+        <li class="yes"><span class="th">เครื่อง Prysm iO™ 1 เครื่อง</span><span class="en">1 Prysm iO™ Device</span></li>
+        <li class="yes"><span class="th">Pharmanex® LifePak® 1 กล่อง</span><span class="en">Pharmanex® LifePak® 1 box</span></li>
+        <li class="yes"><span class="th">G3™ Juice 2 ขวด (ไม่รวมแก้ว)</span><span class="en">G3™ Juice 2 bottles (excl. glass)</span></li>
+        <li class="yes"><span class="th">รับประกันเครื่อง 2 ปี</span><span class="en">2-Year Device Warranty</span></li>
+        <li><span class="th">Inner Focus Collagen Plus</span><span class="en">Inner Focus Collagen Plus</span></li>
+        <li><span class="th">Vaysy-Spanun</span><span class="en">Vaysy-Spanun</span></li>
+      </ul>
+      <button class="pack-btn" onclick="alert('กรุณาติดต่อ Brand Affiliate ของท่าน\nPlease contact your Brand Affiliate')"><span class="th-inline">สั่งซื้อ Starter Kit</span><span class="en-inline">Order Starter Kit</span></button>
+      <div class="pack-pv"><span class="th-inline">รหัสสินค้า</span><span class="en-inline">Product Code</span>: 19172344</div>
+    </div>
+    <div class="pack featured fu" style="transition-delay:.12s">
+      <div class="pack-badge"><span class="th-inline">ประหยัดสูงสุด</span><span class="en-inline">Best Value</span></div>
+      <div class="pack-name">Advance Kit</div>
+      <img class="pack-img" src="images/Prysm_IO_Starter_Pack.png" alt="Advance Kit" style="filter:brightness(1.06)">
+      <div class="pack-price-th">฿26,000 <small style="font-size:.45em;opacity:.55"><span class="th-inline">ราคาสมาชิก</span><span class="en-inline">member price</span></small></div>
+      <div class="pack-price-orig">฿37,180 <span style="opacity:.6;font-size:.9em">(<span class="th-inline">ราคาขายปลีก</span><span class="en-inline">retail</span>)</span></div>
+      <div class="pack-save"><span class="th-inline">ประหยัด ฿1,840 · 500 PV</span><span class="en-inline">Save ฿1,840 · 500 PV</span></div>
+      <div class="pack-divider"></div>
+      <ul class="pack-features">
+        <li class="yes"><span class="th">เครื่อง Prysm iO™ 1 เครื่อง</span><span class="en">1 Prysm iO™ Device</span></li>
+        <li class="yes"><span class="th">Pharmanex® LifePak® 1 กล่อง</span><span class="en">Pharmanex® LifePak® 1 box</span></li>
+        <li class="yes"><span class="th">G3™ Juice 4 ขวด (ไม่รวมแก้ว)</span><span class="en">G3™ Juice 4 bottles (excl. glass)</span></li>
+        <li class="yes"><span class="th">Inner Focus Collagen Plus 1 กล่อง</span><span class="en">Inner Focus Collagen Plus 1 box</span></li>
+        <li class="yes"><span class="th">Vaysy-Spanun 1 กระปุก</span><span class="en">Vaysy-Spanun 1 jar</span></li>
+        <li class="yes"><span class="th">รับประกันเครื่อง 2 ปี</span><span class="en">2-Year Device Warranty</span></li>
+      </ul>
+      <button class="pack-btn" onclick="alert('กรุณาติดต่อ Brand Affiliate ของท่าน\nPlease contact your Brand Affiliate')"><span class="th-inline">สั่งซื้อ Advance Kit</span><span class="en-inline">Order Advance Kit</span></button>
+      <div class="pack-pv"><span class="th-inline">รหัสสินค้า</span><span class="en-inline">Product Code</span>: 19172345</div>
+    </div>
+  </div>
+  <p style="text-align:center;font-family:'DM Mono',monospace;font-size:.56rem;color:var(--dim);margin-top:1.3rem;letter-spacing:.06em" class="fu">
+    <span class="th">*สงวนสิทธิ์เฉพาะ Brand Affiliate รหัสสมาชิกไทยเท่านั้น · ราคาอาจเปลี่ยนแปลงได้โดยไม่แจ้งล่วงหน้า</span>
+    <span class="en">*Exclusive for Thai Brand Affiliate members only · Prices subject to change without notice</span>
+  </p>
+</section>
+
+<!-- ═══ 7-DAY CHALLENGE ═══ -->
+<section class="challenge" id="challenge">
+  <div class="challenge-header">
+    <div class="sec-label fu"><span class="th">ความท้าทาย 7 วัน</span><span class="en">7-Day Challenge</span></div>
+    <h2 class="sec-title fu" style="transition-delay:.08s"><span class="th">ติดตามคะแนนของคุณ<br>ทุกวัน เป็นเวลา <em>7 วัน</em></span><span class="en">Track your score<br>every day for <em>7 Days</em></span></h2>
+    <p style="font-family:'Sarabun',sans-serif;font-size:.9rem;color:var(--muted);line-height:1.8;font-weight:300;margin-top:.9rem" class="fu">
+      <span class="th">ดูว่าอาหาร การนอนหลับ ความเครียด และอาหารเสริมของคุณส่งผลต่อระดับสารต้านอนุมูลอิสระอย่างไร ในชีวิตจริง ทุกวัน</span>
+      <span class="en">See how your food, sleep, stress, and supplements affect your antioxidant levels in real life, every single day.</span>
+    </p>
+  </div>
+  <div class="days-grid fu" style="transition-delay:.1s">
+    <div class="day-card"><img src="images/Day_1.png" alt="Day 1"><div class="day-label"><span class="th-inline">วันที่</span><span class="en-inline">Day</span> 1</div></div>
+    <div class="day-card"><img src="images/Day_2.png" alt="Day 2"><div class="day-label"><span class="th-inline">วันที่</span><span class="en-inline">Day</span> 2</div></div>
+    <div class="day-card"><img src="images/Day_3.png" alt="Day 3"><div class="day-label"><span class="th-inline">วันที่</span><span class="en-inline">Day</span> 3</div></div>
+    <div class="day-card"><img src="images/Day_4.png" alt="Day 4"><div class="day-label"><span class="th-inline">วันที่</span><span class="en-inline">Day</span> 4</div></div>
+    <div class="day-card"><img src="images/Day_5.png" alt="Day 5"><div class="day-label"><span class="th-inline">วันที่</span><span class="en-inline">Day</span> 5</div></div>
+    <div class="day-card"><img src="images/Day_6.png" alt="Day 6"><div class="day-label"><span class="th-inline">วันที่</span><span class="en-inline">Day</span> 6</div></div>
+    <div class="day-card"><img src="images/Day_7.png" alt="Day 7"><div class="day-label"><span class="th-inline">วันที่</span><span class="en-inline">Day</span> 7</div></div>
+  </div>
+</section>
+
+<!-- ═══ BUSINESS ═══ -->
+<section class="business" id="business">
+  <div class="business-inner">
+    <div class="fu">
+      <div class="sec-label"><span class="th">โอกาสทางธุรกิจ</span><span class="en">Business Opportunity</span></div>
+      <h2 class="sec-title" style="margin-bottom:1.3rem">
+        <span class="th">ง่ายมากที่จะ<br><em>สร้างธุรกิจ</em>กับ Prysm iO</span>
+        <span class="en">It's never been<br>this <em>easy to build</em><br>your business</span>
+      </h2>
+      <p style="font-family:'Sarabun',sans-serif;font-size:.9rem;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:1.4rem">
+        <span class="th">84% ของ Brand Affiliate เชื่อว่า Prysm iO จะช่วยดึงดูดลูกค้าใหม่ และ 62% ของผู้บริโภคสนใจซื้ออาหารเสริมหลังเรียนรู้เกี่ยวกับเทคโนโลยีนี้</span>
+        <span class="en">84% of Brand Affiliates believe Prysm iO will attract new customers. 62% of consumers expressed interest in purchasing supplements after learning about this technology.</span>
+      </p>
+      <div class="biz-steps">
+        <div class="biz-step">
+          <div class="biz-num">1</div>
+          <div><div class="biz-step-title"><span class="th">ชวน (Inviting)</span><span class="en">Inviting</span></div><div class="biz-step-text"><span class="th">แค่หยิบ Prysm iO ออกมาจากกระเป๋า ความอยากรู้ของคนจะทำงานแทนคุณ</span><span class="en">Just take it out from your bag. People's curiosity does the work for you.</span></div></div>
+        </div>
+        <div class="biz-step">
+          <div class="biz-num">2</div>
+          <div><div class="biz-step-title"><span class="th">นำเสนอ (Presenting)</span><span class="en">Presenting</span></div><div class="biz-step-text"><span class="th">เรียนรู้นิดหน่อยแล้วใช้แอป Prysm นำเสนอ ข้อมูลจริงพูดแทนคุณ</span><span class="en">Learn a little and use the Prysm app to present. Real data speaks for itself.</span></div></div>
+        </div>
+        <div class="biz-step">
+          <div class="biz-num">3</div>
+          <div><div class="biz-step-title"><span class="th">ปิดการขาย (Closing)</span><span class="en">Closing</span></div><div class="biz-step-text"><span class="th">แค่แสดงคะแนน Prysm ของตัวคุณเอง ให้ผลลัพธ์จริงเป็นหลักฐาน</span><span class="en">Just show them your Prysm Score. Let your real results close the sale.</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="fu" style="transition-delay:.12s">
+      <img class="business-img" src="images/business.png" alt="Prysm iO in your Nu Skin Business">
+      <img src="images/PrysmIO_Testimonial.jpg" alt="Testimonial" style="width:100%;border:.5px solid var(--border);display:block;margin-top:1px;">
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section">
+  <div class="sec-label fu" style="display:flex;justify-content:center"><span class="th">เริ่มต้นวันนี้</span><span class="en">Get Started Today</span></div>
+  <h2 class="cta-title fu" style="transition-delay:.08s">
+    <span class="th">สุขภาพเซลล์<br>เริ่มจาก<em>ความรู้ที่แม่นยำ</em></span>
+    <span class="en">Cellular health<br>begins with <em>precise knowledge</em></span>
+  </h2>
+  <p class="cta-sub fu" style="transition-delay:.16s">
+    <span class="th">สแกนครั้งแรกใน 15 วินาที · ไม่ต้องเจาะเลือด · รับประกัน 2 ปี · ติดต่อ Brand Affiliate ของท่านได้เลย</span>
+    <span class="en">First scan in 15 seconds · No blood test · 2-Year Warranty · Contact your Brand Affiliate today</span>
+  </p>
+  <div class="email-form fu" style="transition-delay:.22s">
+    <input type="text" id="contact-input" placeholder="เบอร์โทร / Line ID / Email">
+    <button onclick="handleContact()"><span class="th-inline">ติดต่อเรา</span><span class="en-inline">Contact Us</span></button>
+  </div>
+  <p class="form-note fu" style="transition-delay:.28s">
+    <span class="th">ทีมงานจะติดต่อกลับภายใน 24 ชั่วโมง · ไม่มีค่าใช้จ่ายในการสอบถาม</span>
+    <span class="en">Our team will contact you within 24 hours · Free consultation, no obligation</span>
+  </p>
+</section>
+
+<div class="prism-line"></div>
+
+<footer>
+  <div class="footer-logo">Prysm iO™</div>
+  <ul class="footer-links">
+    <li><a href="#why"><span class="th-inline">ทำไมต้อง Prysm</span><span class="en-inline">Why Prysm</span></a></li>
+    <li><a href="#how"><span class="th-inline">วิธีใช้งาน</span><span class="en-inline">How It Works</span></a></li>
+    <li><a href="#score"><span class="th-inline">คะแนน</span><span class="en-inline">Score</span></a></li>
+    <li><a href="#compare"><span class="th-inline">เปรียบเทียบ</span><span class="en-inline">Compare</span></a></li>
+    <li><a href="#packages"><span class="th-inline">แพ็กเกจ</span><span class="en-inline">Packages</span></a></li>
+    <li><a href="#challenge"><span class="th-inline">7 วัน</span><span class="en-inline">7 Days</span></a></li>
+    <li><a href="#business"><span class="th-inline">ธุรกิจ</span><span class="en-inline">Business</span></a></li>
+  </ul>
+  <div class="footer-copy">Powered by Nu Skin · © 2026 Prysm iO™ Thailand</div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:.1});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+const orb=document.getElementById('orb');
+document.addEventListener('mousemove',e=>{
+  const x=(e.clientX/innerWidth-.5)*50,y=(e.clientY/innerHeight-.5)*50;
+  orb.style.transform=`translate(${x}px,${y}px)`;
+});
+function setLang(lang){
+  document.body.classList.toggle('lang-en',lang==='en');
+  document.getElementById('btn-th').classList.toggle('active',lang==='th');
+  document.getElementById('btn-en').classList.toggle('active',lang==='en');
+  document.documentElement.lang=lang==='th'?'th':'en';
+  localStorage.setItem('prysmLang',lang);
+}
+const saved=localStorage.getItem('prysmLang');
+if(saved==='en')setLang('en');
+function handleContact(){
+  const inp=document.getElementById('contact-input');
+  const val=inp.value.trim();
+  if(!val){inp.focus();return;}
+  inp.value='';
+  inp.placeholder='ขอบคุณ! จะติดต่อกลับเร็วๆ นี้ / Thank you! We will be in touch soon.';
+  inp.style.color='rgba(109,229,179,.8)';
+}
+</script>
+</body>
+</html>
